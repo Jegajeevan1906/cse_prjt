@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RRASE College of Engineering</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Premium Glass Login Modal -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <h2><span class="highlight">Welcome Back</span></h2>
+      <p>Enter your Google Workspace email to continue to the RRASE portal.</p>
+      <input id="emailInput" type="email" placeholder="example@rrase.edu.in" required>
+      <button onclick="checkEmail()" class="btn primary-btn submit-btn">Authenticate →</button>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo-container">
+      <img src="RCE.png" class="logo-img" alt="RRASE Logo">
+      <div class="logo-text">
+        <div class="main-title">RRASE</div>
+        <div class="sub-title">College of Engineering</div>
+      </div>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu">☰</div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero reveal-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Shaping the <span class="highlight">Future</span></h1>
+      <p class="hero-subtitle">Excellence in engineering and technology education, powered by next-generation learning ecosystems.</p>
+      
+      <div class="hero-features">
+        <span class="feature-badge" style="font-size: 1.5rem; color: var(--gold); border-color: var(--gold); font-weight: 800; background: rgba(250, 204, 21, 0.1);">✨ 99.9% Placement Rate</span>
+        <span class="feature-badge">⚡ Industry Ready</span>
+        <span class="feature-badge">🤖 AI Powered Learning</span>
+      </div>
+
+      <div class="hero-buttons">
+        <a href="cse.html" class="btn primary-btn">Explore Courses →</a>
+        <a href="#contact" class="btn secondary-btn" style="color: white; border: 1px solid rgba(255,255,255,0.2);">Apply Now 🚀</a>
+      </div>
+    </div>
+    
+    <!-- GSAP Floating Glows -->
+    <div class="hero-graphics">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+    </div>
+  </section>
+
+  <!-- Animated Scrolling Announcements -->
+  <div class="announcement-banner">
+    <div class="marquee">
+      <span>🚀 2026 - 2030 Admissions Opened</span>
+      <span>|</span>
+      <span>🧠 Workshop on Artificial Intelligence starts next week</span>
+      <span>|</span>
+      <span>💼 Final year Placement Training Begins</span>
+      <span>|</span>
+      <span>🏆 Tech Symposium Registration Open</span>
+      <span>|</span>
+      <span>📅 Project Review Meeting Date announced</span>
+      <span>|</span>
+      <!-- duplicated for seamless loop -->
+      <span>🚀 2026 - 2030 Admissions Opened</span>
+      <span>|</span>
+      <span>🧠 Workshop on Artificial Intelligence starts next week</span>
+      <span>|</span>
+      <span>💼 Final year Placement Training Begins</span>
+      <span>|</span>
+      <span>🏆 Tech Symposium Registration Open</span>
+      <span>|</span>
+      <span>📅 Project Review Meeting Date announced</span>
+    </div>
+  </div>
+
+  <!-- About Section in Glass Panel -->
+  <section id="about" class="about reveal-section">
+    <div class="section-container">
+      <div class="glass-panel">
+        <div class="about-grid">
+          <div class="about-text">
+            <h2>About <span class="highlight">RRASE</span></h2>
+            <p>RRASE College of Engineering, approved by AICTE and affiliated with Anna University, Chennai, is governed by the RRASE Health and Educational Trust. Founded by Dr. S. Renganathan, a renowned academician and visionary leader, the Trust reflects his commitment to accessible, high-quality education.</p>
+            <br>
+            <p>With a legacy that includes roles such as Vice-Chancellor of Bharath University, Dean of MIT, and Director of Research at Anna University, Dr. Renganathan continues to inspire innovation and academic excellence. Our state-of-the-art facilities ensure students are prepared to tackle tomorrow's global challenges.</p>
+          </div>
+          
+          <div class="about-stats">
+            <div class="stat-box">
+              <h3>18+</h3>
+              <p>Years of Excellence</p>
+            </div>
+            <div class="stat-box">
+              <h3>99.9%</h3>
+              <p>Placement Rate</p>
+            </div>
+            <div class="stat-box">
+              <h3>200+</h3>
+              <p>Expert Faculty</p>
+            </div>
+            <div class="stat-box">
+              <h3>50+</h3>
+              <p>Tech Labs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section id="courses" class="courses reveal-section">
+    <div class="section-container">
+      <h2>Advanced <span class="highlight">Programs</span></h2>
+      <div class="courses-grid">
+        
+        <div class="course-card">
+          <div class="course-icon">💻</div>
+          <h3>Computer Science</h3>
+          <p>Master software development, Artificial Intelligence, and cutting-edge web technologies in our state-of-the-art labs.</p>
+          <a href="jj/cse.html" class="learn-more">View Department <span>→</span></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section in Glass Panel -->
+  <section id="contact" class="contact reveal-section">
+    <div class="section-container">
+      <div class="glass-panel">
+        <div class="contact-container">
+          
+          <div class="contact-info">
+            <h2>Get in <span class="highlight">Touch</span></h2>
+            <p>Ready to start your journey? Reach out to our admissions team today and secure your future.</p>
+            <br>
+            <div class="info-item">
+              <span class="info-icon">📍</span>
+              <p>Vanchuvancherry, Padappai - 601301.<br>Tambaram - Oragadam Highway (SH 48)</p>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">📞</span>
+              <p>044-27174753 / 54 / 56</p>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">✉️</span>
+              <p>rraseprincipal@gmail.com<br>principal@rrase.org</p>
+            </div>
+          </div>
+
+          <form class="contact-form" onsubmit="event.preventDefault();">
+            <div class="input-group">
+              <input type="text" placeholder="Full Name" required>
+            </div>
+            <div class="input-group">
+              <input type="email" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+              <textarea placeholder="How can we help you?" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn primary-btn submit-btn">Send Message</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>RRASE College</h3>
+        <p style="font-size: 0.9rem;">Empowering minds since 2008.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home Base</a>
+        <a href="#about">About Trust</a>
+        <a href="#courses">Academic Courses</a>
+        <a href="#contact">Admissions Contact</a>
+      </div>
+      <div class="footer-links" style="opacity: 0.7;">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Student Portal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 RRASE College of Engineering. All rights reserved. Designed with ❤️</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

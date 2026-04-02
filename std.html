@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management Portal - CSE</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    /* Extraordinary Styles for Student Management */
+    body { background: var(--bg-base); min-height: 100vh; display: flex; flex-direction: column; }
+    .portal-container { padding: 4rem 5%; flex-grow: 1; max-width: 1400px; margin: 0 auto; width: 100%; margin-top: var(--nav-height); }
+    
+    .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; background: rgba(255,255,255,0.02); padding: 2rem; border-radius: 20px; border: 1px solid var(--glass-border); }
+    
+    .panel-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
+    @media (max-width: 900px) { .panel-grid { grid-template-columns: 1fr; } }
+    
+    .student-form-glass { background: linear-gradient(135deg, rgba(30, 15, 8, 0.7) 0%, rgba(15, 7, 3, 0.9) 100%); border: 1px solid rgba(249, 115, 22, 0.2); border-radius: 20px; padding: 2rem; }
+    
+    .styled-input { width: 100%; padding: 14px 20px; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--glass-border); border-radius: 12px; color: white; font-family: inherit; font-size: 1rem; margin-bottom: 1.5rem; transition: all 0.3s; }
+    .styled-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 15px rgba(249, 115, 22, 0.2); }
+    
+    select.styled-input option { background: var(--bg-base); color: white; }
+    
+    .student-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(249, 115, 22, 0.1); border-radius: 16px; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; margin-bottom: 1rem; cursor: pointer; }
+    .student-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(249, 115, 22, 0.1); }
+    
+    .badge-year { font-size: 0.8rem; background: rgba(249, 115, 22, 0.2); color: var(--gold); padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(249, 115, 22, 0.3); }
+    
+    .delete-btn { background: rgba(220, 38, 38, 0.2); color: #f87171; border: 1px solid rgba(220, 38, 38, 0.3); padding: 8px 16px; border-radius: 10px; cursor: pointer; transition: all 0.3s; }
+    .delete-btn:hover { background: rgba(220, 38, 38, 0.8); color: white; }
+  </style>
+</head>
+<body>
+
+  <!-- Full Screen Login Modal built in -->
+  <div id="loginScreen" style="position: fixed; inset: 0; background: var(--bg-base); z-index: 9999; display: flex; justify-content: center; align-items: center;">
+    <div class="student-form-glass" style="max-width: 400px; width: 90%; text-align: center; position: relative;">
+      <div style="position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle, var(--primary), transparent); filter: blur(30px); z-index: -1;"></div>
+      <h2>Secure <span class="highlight">Gateway</span></h2>
+      <p style="margin-bottom: 2rem; color: var(--text-muted);">Academic Management Protocol</p>
+      <input id="username" class="styled-input" placeholder="Admin ID">
+      <input id="password" class="styled-input" type="password" placeholder="Passcode">
+      <button onclick="login()" class="primary-btn" style="width: 100%;">Initialize →</button>
+    </div>
+  </div>
+
+  <div id="app" style="display: none; width: 100%;">
+    <!-- Navbar -->
+    <header class="navbar scrolled">
+      <div class="logo-container" onclick="window.location.href='index.html'">
+        <img src="RCE.png" class="logo-img" alt="RRASE Logo" style="height: 40px;">
+        <div class="logo-text">
+          <div class="main-title" style="font-size: 1.2rem;">RRASE</div>
+          <div class="sub-title" style="font-size: 0.6rem;">Student Portal</div>
+        </div>
+      </div>
+      <button onclick="logout()" class="primary-btn" style="padding: 8px 20px; font-size: 0.9rem; background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);">Terminate Session ✕</button>
+    </header>
+
+    <div class="portal-container">
+      <div class="dashboard-header">
+        <div>
+          <h1 style="font-size: 2.5rem;"><span class="highlight">Department</span> Registry</h1>
+          <p>Real-time student data management system.</p>
+        </div>
+        <div class="feature-badge" style="border-color: var(--primary);">System Online 🟢</div>
+      </div>
+
+      <div class="panel-grid">
+        <!-- Add Student Panel -->
+        <div class="student-form-glass">
+          <h3 style="margin-bottom: 1.5rem;">Add <span class="highlight">Record</span></h3>
+          <input id="name" class="styled-input" placeholder="Full Name">
+          <input id="regNo" class="styled-input" placeholder="Registration Number">
+          <input id="dept" class="styled-input" placeholder="Department (e.g., CSE)">
+          <select id="year" class="styled-input">
+            <option value="" disabled selected>Select Academic Year</option>
+            <option value="1">Year 1</option>
+            <option value="2">Year 2</option>
+            <option value="3">Year 3</option>
+            <option value="4">Year 4</option>
+          </select>
+          <button onclick="addStudent()" class="primary-btn" style="width: 100%;">Register Student</button>
+
+          <hr style="border-color: rgba(255,255,255,0.1); margin: 2.5rem 0;">
+
+          <h3 style="margin-bottom: 1.5rem;">Append <span class="highlight">Project/Topic</span></h3>
+          <input id="topicName" class="styled-input" placeholder="Project Topic Name">
+          <input id="topicReg" class="styled-input" placeholder="Assign to Reg No.">
+          <button onclick="addTopic()" class="primary-btn" style="width: 100%; background: none; border: 1px solid var(--gold); color: var(--gold);">Attach Document</button>
+        </div>
+
+        <!-- Student Database Panel -->
+        <div class="student-form-glass">
+          <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+            <input id="searchInput" class="styled-input" style="margin: 0; flex-grow: 1;" placeholder="🔍 Search Identity / Reg No...">
+            <select id="yearFilter" class="styled-input" style="margin: 0; width: auto;">
+              <option value="">All Years</option>
+              <option value="1">Year 1</option>
+              <option value="2">Year 2</option>
+              <option value="3">Year 3</option>
+              <option value="4">Year 4</option>
+            </select>
+          </div>
+
+          <div id="studentListContainer">
+            <!-- Dynamic Injection -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Security Layer */
+    function login() {
+      const u = document.getElementById("username").value;
+      const p = document.getElementById("password").value;
+      
+      // Default dev credentials 
+      if ((u === "admin" && p === "1234") || (u === "cse" && p === "admin")) {
+        localStorage.setItem("portal_auth", "verified");
+        gsap.to('#loginScreen', { opacity: 0, duration: 0.5, onComplete: () => {
+          document.getElementById('loginScreen').style.display = 'none';
+          document.getElementById('app').style.display = 'block';
+          gsap.from('.portal-container', { y: 30, opacity: 0, duration: 0.8 });
+        }});
+      } else {
+        alert("Authentication Failed. Check clearance codes.");
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("portal_auth");
+      location.reload();
+    }
+
+    if (localStorage.getItem("portal_auth") === "verified") {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+    }
+
+    /* Database Layer */
+    let students = JSON.parse(localStorage.getItem("cse_students")) || [
+      { name: 'John Doe', regNo: '2026CSE001', dept: 'CSE', year: '1' } // Mock data
+    ];
+    let topics = JSON.parse(localStorage.getItem("cse_topics")) || [];
+
+    function syncDB() {
+      localStorage.setItem("cse_students", JSON.stringify(students));
+      localStorage.setItem("cse_topics", JSON.stringify(topics));
+    }
+
+    function renderStudents(filterText = "", filterYear = "") {
+      const container = document.getElementById("studentListContainer");
+      container.innerHTML = "";
+      
+      const filtered = students.filter(s => {
+        const matchesText = s.name.toLowerCase().includes(filterText.toLowerCase()) || s.regNo.toLowerCase().includes(filterText.toLowerCase());
+        const matchesYear = filterYear ? s.year === filterYear : true;
+        return matchesText && matchesYear;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 2rem;">No Records Found in Database.</div>`;
+        return;
+      }
+
+      filtered.forEach((s, i) => {
+        // Retrieve real index from parent array for deletion safety
+        const realIndex = students.indexOf(s);
+        
+        container.innerHTML += `
+          <div class="student-card">
+            <div onclick="openStudentCard('${s.regNo}')" style="flex-grow: 1;">
+              <h4 style="color: white; font-size: 1.1rem; margin-bottom: 5px;">${s.name}</h4>
+              <p style="margin: 0; font-size: 0.9rem;">ID: <span style="color: var(--primary);">${s.regNo}</span> | Dept: ${s.dept}</p>
+            </div>
+            <div style="display: flex; gap: 15px; align-items: center;">
+              <span class="badge-year">Year ${s.year}</span>
+              <button class="delete-btn" onclick="deleteStudent(${realIndex})">Drop</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function deleteStudent(index) {
+      if (confirm("WARNING: Irreversible action. Purge student record from mainframe?")) {
+        students.splice(index, 1);
+        syncDB();
+        renderStudents();
+      }
+    }
+
+    function addStudent() {
+      const name = document.getElementById("name").value.trim();
+      const regNo = document.getElementById("regNo").value.trim();
+      const dept = document.getElementById("dept").value.trim() || "CSE";
+      const year = document.getElementById("year").value;
+
+      if (!name || !regNo || !year) {
+        alert("Incomplete data submission."); return;
+      }
+      if (students.some(s => s.regNo === regNo)) {
+        alert("Registration violation: ID already exists in mainframe."); return;
+      }
+
+      students.unshift({ name, regNo, dept, year });
+      syncDB();
+      renderStudents();
+      
+      // Clear
+      document.getElementById("name").value = "";
+      document.getElementById("regNo").value = "";
+    }
+
+    /* Filters */
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      renderStudents(e.target.value, document.getElementById("yearFilter").value);
+    });
+    document.getElementById("yearFilter").addEventListener("change", (e) => {
+      renderStudents(document.getElementById("searchInput").value, e.target.value);
+    });
+
+    /* Initial Render */
+    renderStudents();
+
+    /* File/Topic Module */
+    function addTopic() {
+      const tName = document.getElementById("topicName").value;
+      const reg = document.getElementById("topicReg").value;
+
+      if (!tName || !reg) { alert("Identify Project and Target ID first."); return; }
+      if (!students.some(s => s.regNo === reg)) { alert("Target ID not found in registry."); return; }
+
+      let fileInput = document.createElement("input");
+      fileInput.type = "file";
+      fileInput.onchange = function(e) {
+        let file = e.target.files[0];
+        if (!file) return;
+        let reader = new FileReader();
+        reader.onload = function() {
+          topics.push({ name: tName, regNo: reg, img: reader.result });
+          syncDB();
+          alert("✓ Document Successfully Attached to " + reg);
+          document.getElementById("topicName").value = "";
+          document.getElementById("topicReg").value = "";
+        };
+        reader.readAsDataURL(file);
+      };
+      fileInput.click();
+    }
+
+    /* Print / View Page */
+    function openStudentCard(reg) {
+      const student = students.find(s => s.regNo === reg);
+      const stuTopics = topics.filter(t => t.regNo === reg);
+
+      const htmlContent = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>${student.name} - Profile</title>
+          <style>
+            body { background: #0f0703; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 3rem; }
+            .profile-glass { background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 20px; border: 1px solid rgba(249,115,22,0.3); max-width: 800px; margin: 0 auto; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+            h1 { color: #f97316; margin-top: 0; font-size: 3rem; }
+            .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+            .info-box { background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 10px; border-left: 3px solid #facc15; }
+            .badge { display: inline-block; background: #ea580c; padding: 5px 15px; border-radius: 50px; font-weight: bold; margin-bottom: 2rem; }
+            img { max-width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); margin-top: 10px; cursor: pointer; transition: 0.3s; }
+            img:hover { transform: scale(1.02); border-color: #f97316; }
+          </style>
+        </head>
+        <body>
+          <div class="profile-glass">
+            <span class="badge">Class of Year ${student.year}</span>
+            <h1>${student.name}</h1>
+            <div class="info-grid">
+              <div class="info-box"><strong>ID Registry:</strong> <br>${student.regNo}</div>
+              <div class="info-box"><strong>Department:</strong> <br>${student.dept}</div>
+            </div>
+            
+            <h2 style="margin-top: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Attached Projects</h2>
+            ${stuTopics.length > 0 ? 
+              stuTopics.map(t => `
+                <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem;">
+                  <h3 style="color: #facc15; margin-top: 0;">${t.name}</h3>
+                  ${t.img ? `<img src="${t.img}" onclick="window.open('${t.img}')" alt="Document">` : ""}
+                </div>
+              `).join("") 
+              : "<p style='color: #94a3b8; font-style: italic;'>No documents on file.</p>"
+            }
+          </div>
+        </body>
+        </html>
+      `;
+      
+      const win = window.open("", "_blank");
+      win.document.write(htmlContent);
+      win.document.close();
+    }
+  </script>
+</body>
+</html>

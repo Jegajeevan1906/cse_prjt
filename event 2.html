@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details - CSE</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo-container" onclick="window.location.href='index.html'">
+      <img src="RCE.png" class="logo-img" alt="RRASE Logo">
+      <div class="logo-text">
+        <div class="main-title">RRASE</div>
+        <div class="sub-title">College of Engineering</div>
+      </div>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home Base</a></li>
+        <li><a href="cse.html">CSE Department</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu">☰</div>
+  </header>
+
+  <!-- Extraordinary Hero Section -->
+  <section class="cse-hero" style="min-height: 40vh; border-radius: 0 0 30px 30px;">
+    <div class="code-rain"></div>
+    <div class="cse-hero-content" style="padding: 2rem;">
+      <div class="tech-badge">Workshop Archive</div>
+      <h1 class="glitch-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">AI Bootcamp <span class="highlight">Series</span></h1>
+      <p style="margin-bottom: 0;">Mastering generative structures and logic models.</p>
+    </div>
+  </section>
+
+  <!-- Editorial Event Layout -->
+  <section class="reveal-section" style="padding: 6rem 5%;">
+    <div class="section-container premium-glass glass-panel" style="padding: 3rem;">
+      
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 3rem; align-items: start;">
+        
+        <!-- Left Image Grid (1 to 6) -->
+        <div class="event-image-box gallery-glow">
+          <img src="1.jpeg" alt="Event photo" class="gallery-img">
+          <img src="2.jpeg" alt="Event photo" class="gallery-img">
+          <img src="3.jpeg" alt="Event photo" class="gallery-img">
+          <img src="4.jpeg" alt="Event photo" class="gallery-img">
+          <img src="5.jpeg" alt="Event photo" class="gallery-img">
+          <img src="6.jpeg" alt="Event photo" class="gallery-img">
+        </div>
+
+        <!-- Center Content -->
+        <div class="content-panel" style="text-align: center; background: rgba(0,0,0,0.4); padding: 3rem 2rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); box-shadow: inset 0 0 30px rgba(0,0,0,0.8);">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
+          <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Artificial Intelligence <span class="highlight">Immersion</span></h2>
+          <p style="color: #e2e8f0;">The AI Workshop at RRASE College of Engineering serves as a vital bridge between theoretical classroom concepts and real-world industrial applications. Building on previous seminars, the current workshops focus on high-demand skills for 2026, such as Generative AI, AI Agents, and Retrieval-Augmented Generation (RAG).</p>
+          <br>
+          <p style="color: #94a3b8;">These hands-on sessions in specialized laboratories provide students with experience in building intelligent systems. By collaborating with industry tech firms, the department ensures students master AI Systems Thinking, preparing them to design responsible AI solutions for the modern landscape.</p>  
+          <div style="margin-top: 3rem;">
+            <a href="cse.html" class="btn primary-btn" style="border: 1px solid var(--secondary);">← Return to Nexus</a>
+          </div>
+        </div>
+
+        <!-- Right Images Grid (7 to 12) -->
+        <div class="event-image-box gallery-glow">
+          <img src="7.jpeg" alt="Event photo" class="gallery-img">
+          <img src="8.jpeg" alt="Event photo" class="gallery-img">
+          <img src="9.jpeg" alt="Event photo" class="gallery-img">
+          <img src="10.jpeg" alt="Event photo" class="gallery-img">
+          <img src="11.jpeg" alt="Event photo" class="gallery-img">
+          <img src="12.jpeg" alt="Event photo" class="gallery-img">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="margin-top: 0; background: var(--bg-base);">
+    <div class="footer-bottom">
+      <p>&copy; 2026 RRASE College of Engineering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <style>
+    /* Specific Gallery Overrides */
+    .gallery-glow {
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 1rem;
+      position: relative;
+    }
+    .gallery-img {
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      border-radius: 12px; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
+      border: 1px solid rgba(255,255,255,0.1); 
+      transition: all 0.4s ease; 
+      cursor: pointer;
+    }
+    .gallery-img:hover {
+      transform: scale(1.1);
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
+      z-index: 10;
+      position: relative;
+    }
+    @media (max-width: 900px) {
+      .reveal-section > .section-container > div {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
